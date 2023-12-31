@@ -78,6 +78,15 @@ export async function bookRoom(roomId, booking) {
   }
 }
 
+export async function getAllBookings() {
+  try {
+    const response = await api.get("/bookings/all-bookings");
+    return response.data;
+  } catch (error) {
+    throw new Error(`Error fetching bookings : ${error.message}`);
+  }
+}
+
 export async function getBookingByConfirmationCode(confirmationCode) {
   try {
     const result = await api.get(`/bookings/confirmation/${confirmationCode}`);

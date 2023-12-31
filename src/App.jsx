@@ -13,6 +13,7 @@ import Admin from "./components/admin/Admin";
 import Checkout from "./components/booking/CheckOut";
 import RoomListing from "./components/room/RoomListing";
 import BookingSuccess from "./components/booking/BookingSuccess";
+import Bookings from "./components/booking/Bookings";
 
 function App() {
   useEffect(() => {
@@ -32,6 +33,7 @@ function App() {
           <Route path="/browse-all-rooms" element={<RoomListing />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/booking-success" element={<BookingSuccess />} />
+          <Route path="/existing-bookings" element={<Bookings />} />
         </Routes>
         <Footer />
       </main>

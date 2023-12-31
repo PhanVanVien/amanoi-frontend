@@ -4,6 +4,7 @@ import RoomCard from "./RoomCard";
 import { Col, Container, Row } from "react-bootstrap";
 import RoomFilter from "../common/RoomFilter";
 import RoomPaginator from "../common/RoomPaginator";
+import Loader from "../common/Loader";
 
 const Room = () => {
   // data, error, isLoading, currentPage, roomsPerPage, filteredData
@@ -30,7 +31,7 @@ const Room = () => {
   }, []);
 
   if (isLoading) {
-    return <div>Loading rooms...</div>;
+    return <Loader />;
   }
 
   if (errorMessage) {

@@ -51,29 +51,34 @@ const BookingSummary = ({ booking, payment, isFormValid, onConfirm }) => {
 
         <div>
           <h5 className="hotel-color">Number of Guest</h5>
-          <strong>
-            Adult{booking.numOfAdults > 1 ? "s" : ""} : {booking.numOfAdults}
-          </strong>
-          <strong>
-            <p>Children : {booking.numOfChildren}</p>
-          </strong>
+          <p>
+            Adult{booking.numOfAdults > 1 ? "s" : ""} :{" "}
+            <strong>{booking.numOfAdults}</strong>
+          </p>
+          <p>
+            Children : <strong>{booking.numOfChildren}</strong>
+          </p>
         </div>
 
         {payment > 0 ? (
           <>
-            <p>
+            <div>
               Total payment: <strong>${payment}</strong>
-            </p>
+            </div>
 
             {isFormValid && !isBookingConfirmed ? (
-              <Button variant="success" onClick={handleConfirmBooking}>
+              <Button
+                variant="success"
+                onClick={handleConfirmBooking}
+                className="mt-1"
+              >
                 {isProcessingPayment ? (
                   <>
                     <span
                       className="spinner-border spinner-border-sm mr-2"
                       role="status"
                       aria-hidden="true"
-                    ></span>
+                    />
                     Booking Confirmed, redirecting to payment...
                   </>
                 ) : (

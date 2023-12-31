@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getAllRooms } from "../utils/ApiFunctions";
 import { Link } from "react-router-dom";
 import { Card, Carousel, Col, Row } from "react-bootstrap";
+import Loader from "./Loader";
 
 const RoomCarousel = () => {
   // object rooms, errorMessage, isLoading
@@ -25,7 +26,11 @@ const RoomCarousel = () => {
   }, []);
 
   if (isLoading) {
-    return <div className="mt-5">Loading rooms...</div>;
+    return (
+      <div className="mt-5">
+        <Loader />
+      </div>
+    );
   }
   if (errorMessage) {
     return <div className="text-danger mb-5 mt-5">Error: {errorMessage}</div>;
@@ -33,9 +38,12 @@ const RoomCarousel = () => {
 
   return (
     <section className="container mb-5 mt-5 p-3">
-      {/* <Link to={"/browse-all-rooms"} className="link-offset-2 link-underline hotel-color link-underline-opacity-0 text-center">
+      <Link
+        to={"/browse-all-rooms"}
+        className="link-offset-2 link-underline hotel-color link-underline-opacity-0 text-center"
+      >
         Browse all rooms
-      </Link> */}
+      </Link>
       <Carousel indicators={false}>
         {[...Array(Math.ceil(rooms.length / 4))].map((_, index) => (
           <Carousel.Item key={index}>

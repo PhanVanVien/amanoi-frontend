@@ -5,6 +5,7 @@ import RoomFilter from "../common/RoomFilter";
 import { Col, Row } from "react-bootstrap";
 import RoomPaginator from "../common/RoomPaginator";
 import { deleteRoom, getAllRooms } from "../utils/ApiFunctions";
+import Loader from "../common/Loader";
 
 const ExistingRooms = () => {
   // state: rooms, isLoading, selectedRoomType, errorMessage, successMessage, currentPage, roomsPerPage, filteredRooms
@@ -96,7 +97,7 @@ const ExistingRooms = () => {
         )}
       </div>
       {isLoading ? (
-        <p>Loading existing rooms</p>
+        <Loader />
       ) : (
         <>
           <section className="mt-5 mb-5 container">
@@ -117,8 +118,8 @@ const ExistingRooms = () => {
                 </Link>
               </Col>
             </Row>
-            <table className="table table-borderless table-hover">
-              <thead>
+            <table className="table table-bordered table-hover shadow">
+              <thead className="table-dark">
                 <tr className="text-center">
                   <th>#</th>
                   <th>Room Type</th>

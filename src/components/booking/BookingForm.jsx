@@ -109,7 +109,7 @@ const BookingForm = () => {
   };
 
   return (
-    <div className="container mb-5">
+    <div className="container">
       <div className="row">
         <div className="col-md-6">
           <div className="card card-body mt-5">
@@ -145,8 +145,10 @@ const BookingForm = () => {
                   Please enter a valid email address
                 </Form.Control.Feedback>
               </Form.Group>
+              <p />
+
               <fieldset style={{ border: "2px" }}>
-                <legend>Lodging Period</legend>
+                <h5 className="hotel-color">Lodging Period</h5>
                 <div className="row">
                   <div className="col-6">
                     <Form.Label htmlFor="checkInDate">Check-in date</Form.Label>
@@ -184,8 +186,9 @@ const BookingForm = () => {
                 </div>
               </fieldset>
 
+              <p />
               <fieldset style={{ border: "2px" }}>
-                <legend>Number of Guest</legend>
+                <h5 className="hotel-color">Number of Guest</h5>
                 <div className="row">
                   <div className="col-6">
                     <FormLabel htmlFor="numOfAdults">Adults</FormLabel>
@@ -222,7 +225,7 @@ const BookingForm = () => {
                 </div>
               </fieldset>
 
-              <div className="mt-2 mb-2 form-group">
+              <div className="mt-2 form-group">
                 <button type="submit" className="btn btn-hotel">
                   Continue
                 </button>
@@ -231,7 +234,7 @@ const BookingForm = () => {
           </div>
         </div>
 
-        <div className="col-md-4">
+        <div className="col-md-5">
           {isSubmitted && (
             <BookingSummary
               booking={booking}
