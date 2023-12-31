@@ -119,7 +119,7 @@ const ExistingRooms = () => {
               </Col>
             </Row>
             <table className="table table-bordered table-hover shadow">
-              <thead className="">
+              <thead className="table-dark">
                 <tr className="text-center">
                   <th>#</th>
                   <th>Room Type</th>
