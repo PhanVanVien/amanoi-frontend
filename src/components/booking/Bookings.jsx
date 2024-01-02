@@ -7,7 +7,7 @@ import Loader from "../common/Loader";
 const Bookings = () => {
   const [bookingInfo, setBookingInfo] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     setTimeout(() => {
@@ -17,32 +17,32 @@ const Bookings = () => {
           setIsLoading(false);
         })
         .catch((error) => {
-          setError(error.message);
+          setErrorMessage(error.message);
           setIsLoading(false);
         });
     }, 1000);
   }, []);
 
-  const handleBookingCancellation = async (bookingId) => {
+  const handleBookingCancelation = async (bookingId) => {
     try {
       await cancelBooking(bookingId);
       const data = await getAllBookings();
       setBookingInfo(data);
     } catch (error) {
-      setError(error.message);
+      setErrorMessage(error.message);
     }
   };
 
   return (
     <section className="container">
       <Header title={"Existing Bookings"} />
-      {error && <div className="text-danger">{error}</div>}
+      {errorMessage && <div className="text-danger">{errorMessage}</div>}
       {isLoading ? (
         <Loader />
       ) : (
         <BookingsTable
           bookingInfo={bookingInfo}
-          handleBookingCancellation={handleBookingCancellation}
+          handleBookingCancelation={handleBookingCancelation}
         />
       )}
     </section>

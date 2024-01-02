@@ -1,9 +1,12 @@
 import { parseISO } from "date-fns";
 import React, { useState, useEffect } from "react";
 import DateSlider from "../common/DateSlider";
+import "react-tooltip/dist/react-tooltip.css";
+import { Tooltip } from "react-tooltip";
 
-const BookingsTable = ({ bookingInfo, handleBookingCancellation }) => {
+const BookingsTable = ({ bookingInfo, handleBookingCancelation }) => {
   const [filteredBookings, setFilteredBookings] = useState(bookingInfo);
+  const [open, setOpen] = useState(false);
 
   const filterBookings = (startDate, endDate) => {
     let filtered = bookingInfo;
@@ -25,6 +28,24 @@ const BookingsTable = ({ bookingInfo, handleBookingCancellation }) => {
     setFilteredBookings(bookingInfo);
   }, [bookingInfo]);
 
+  const handleCopyToClipboard = (confirmationCode) => {
+    const el = document.createElement("textarea");
+    el.value = confirmationCode;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand("copy");
+    document.body.removeChild(el);
+
+    setOpen(true);
+    setTimeout(() => {
+      setOpen(false);
+    }, 2000);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <section className="p-4">
       <DateSlider
@@ -32,7 +53,7 @@ const BookingsTable = ({ bookingInfo, handleBookingCancellation }) => {
         onFilterChange={filterBookings}
       />
       <table className="table table-bordered table-hover shadow">
-        <thead className="table-dark">
+        <thead>
           <tr className="text-center">
             <th>#</th>
             <th>Booking ID</th>
@@ -63,11 +84,23 @@ const BookingsTable = ({ bookingInfo, handleBookingCancellation }) => {
               <td>{booking.numOfAdults}</td>
               <td>{booking.numOfChildren}</td>
               <td>{booking.totalNumOfGuests}</td>
-              <td>{booking.bookingConfirmationCode}</td>
+              <td style={{ cursor: "pointer" }}>
+                <button
+                  className="btn btn-sm btn-hotel"
+                  onClick={() =>
+                    handleCopyToClipboard(booking.bookingConfirmationCode)
+                  }
+                  data-tooltip-id="copy-tooltip"
+                  data-tooltip-content="Copy to clipboard"
+                >
+                  {booking.bookingConfirmationCode}
+                  <Tooltip id="copy-tooltip" />
+                </button>
+              </td>
               <td>
                 <button
                   className="btn btn-danger btn-sm"
-                  onClick={() => handleBookingCancellation(booking.bookingId)}
+                  onClick={() => handleBookingCancelation(booking.bookingId)}
                 >
                   Cancel
                 </button>

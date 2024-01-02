@@ -25,6 +25,7 @@ const DateSlider = ({ onDateChange, onFilterChange }) => {
     onDateChange(null, null);
     onFilterChange(null, null);
   };
+
   return (
     <>
       <h5>Filter bookings by date</h5>
