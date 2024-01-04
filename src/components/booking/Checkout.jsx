@@ -53,7 +53,7 @@ const Checkout = () => {
                 <Loader />
               </>
             ) : errorMessage ? (
-              <p>{errorMessage}</p>
+              <p className="text-danger">{errorMessage}</p>
             ) : (
               <div className="room-info">
                 <img

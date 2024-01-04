@@ -76,6 +76,9 @@ const AddRoom = () => {
 
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
+              <label htmlFor="roomType" className="form-label">
+                Room Type
+              </label>
               <RoomTypeSelector
                 handleRoomInputChange={handleRoomInputChange}
                 newRoom={newRoom}

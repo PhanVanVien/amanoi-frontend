@@ -4,6 +4,7 @@ import Parallax from "../common/Parallax";
 import MainHeader from "../layout/MainHeader";
 import RoomCarousel from "../common/RoomCarousel";
 import HotelService from "../common/HotelService";
+import RoomSearch from "../common/RoomSearch";
 
 const Home = () => {
   const location = useLocation();
@@ -14,6 +15,7 @@ const Home = () => {
       {message && <p className="text-warning px-5">{message}</p>}
       <MainHeader />
       <div className="container">
+        <RoomSearch />
         <RoomCarousel />
         <Parallax />
         <RoomCarousel />

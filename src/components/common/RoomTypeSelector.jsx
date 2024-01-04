@@ -43,9 +43,6 @@ const RoomTypeSelector = ({ handleRoomInputChange, newRoom }) => {
     <>
       {roomTypes.length > 0 && (
         <div>
-          <label htmlFor="roomType" className="form-label">
-            Room Type
-          </label>
           <select
             required
             className="form-select"
