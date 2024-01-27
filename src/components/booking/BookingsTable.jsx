@@ -85,8 +85,7 @@ const BookingsTable = ({ bookingInfo, handleBookingCancelation }) => {
               <td>{booking.numOfChildren}</td>
               <td>{booking.totalNumOfGuests}</td>
               <td style={{ cursor: "pointer" }}>
-                <button
-                  className="btn btn-sm btn-hotel"
+                <span
                   onClick={() =>
                     handleCopyToClipboard(booking.bookingConfirmationCode)
                   }
@@ -95,7 +94,7 @@ const BookingsTable = ({ bookingInfo, handleBookingCancelation }) => {
                 >
                   {booking.bookingConfirmationCode}
                   <Tooltip id="copy-tooltip" />
-                </button>
+                </span>
               </td>
               <td>
                 <button

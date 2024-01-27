@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
+import Logout from "../auth/Logout";
 
 const NavBar = () => {
   const [showAccount, setShowAccount] = useState(false);
   const isLoggedIn = localStorage.getItem("token");
-  const userRole = localStorage.getItem("userRole");
+  const userRole = localStorage.getItem("roles");
 
   const handleAccountClick = () => {
     setShowAccount(!showAccount);
@@ -40,12 +41,13 @@ const NavBar = () => {
               </NavLink>
             </li>
 
-            {/* {isLoggedIn && userRole === "ROLE_ADMIN" && ( */}
-            <li className="nav-item">
-              <NavLink className="nav-link" aria-current="page" to={"/admin"}>
-                Admin
-              </NavLink>
-            </li>
+            {isLoggedIn && userRole === "ROLE_ADMIN" && (
+              <li className="nav-item">
+                <NavLink className="nav-link" aria-current="page" to={"/admin"}>
+                  Admin
+                </NavLink>
+              </li>
+            )}
           </ul>
 
           <ul className="d-flex navbar-nav">
@@ -62,8 +64,8 @@ const NavBar = () => {
                 }`}
                 href="#"
                 role="button"
-                data-bs-toggle="dropdown" // Add this line
-                data-bs-target="#accountDropdown" // Add this line
+                data-bs-toggle="dropdown"
+                data-bs-target="#accountDropdown"
                 aria-expanded="false"
                 onClick={handleAccountClick}
               >
@@ -71,7 +73,7 @@ const NavBar = () => {
               </a>
 
               <ul
-                id="accountDropdown" // Add this line
+                id="accountDropdown"
                 className={`dropdown-menu ${showAccount ? "show" : ""}`}
                 aria-labelledby="navbarDropdown"
               >

@@ -11,14 +11,14 @@ const Admin = () => {
         to={"/existing-rooms"}
         className="link-offset-2 hotel-color text-dark link-underline link-underline-opacity-0"
       >
-        <FaAngleRight />{" "} Manage Rooms
+        <FaAngleRight /> Manage Rooms
       </Link>
       <br />
       <Link
         to={"/existing-bookings"}
         className="link-offset-2 text-dark link-underline link-underline-opacity-0"
       >
-        <FaAngleRight />{" "}Manage Bookings
+        <FaAngleRight /> Manage Bookings
       </Link>
     </section>
   );

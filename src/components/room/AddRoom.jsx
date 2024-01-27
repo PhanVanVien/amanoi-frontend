@@ -41,6 +41,7 @@ const AddRoom = () => {
         newRoom.roomType,
         newRoom.roomPrice
       );
+      console.log(success);
       if (success !== undefined) {
         setSuccessMessage("A new room was  added successfully !");
         setNewRoom({ photo: null, roomType: "", roomPrice: "" });

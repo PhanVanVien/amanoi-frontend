@@ -12,19 +12,13 @@ const RoomTypeSelector = ({ handleRoomInputChange, newRoom }) => {
   }, []);
 
   const fetchRoomTypes = () => {
-    getRoomTypes().then((data) => {
-      setRoomTypes(data);
-    });
+    getRoomTypes().then(setRoomTypes);
   };
 
   const addNewRoomType = (e) => {
     const value = e.target.value;
-    if (value === "Add New") {
-      setShowNewRoomTypeInput(true);
-    } else {
-      handleRoomInputChange(e);
-      setShowNewRoomTypeInput(false);
-    }
+    setShowNewRoomTypeInput(value === "Add New");
+    handleRoomInputChange(e);
   };
 
   const handleNewRoomType = (e) => {

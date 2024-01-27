@@ -43,6 +43,7 @@ const EditRoom = () => {
       if (response.status === 200) {
         setSuccessMessage("Room updated successfully!");
         const updatedRoomData = await getRoomById(roomId);
+        console.log(updatedRoomData);
         setRoom(updatedRoomData);
         setImagePreview(updatedRoomData.photo);
         setErrorMessage("");

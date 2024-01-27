@@ -22,8 +22,15 @@ const BookingForm = () => {
     checkOutDate: "",
     numOfAdults: "",
     numOfChildren: "",
+    userId: "",
   });
 
+  const userId = localStorage.getItem("userId");
+
+  useEffect(() => {
+    setBooking({ ...booking, userId: userId });
+  }, []);
+  
   // roomId, navigate
   const { roomId } = useParams();
   const navigate = useNavigate();
@@ -99,6 +106,7 @@ const BookingForm = () => {
   // handle Form Submit
   const handleFormSubmit = async () => {
     try {
+      console.log(booking);
       const confirmationCode = await bookRoom(roomId, booking);
       setIsSubmitted(true);
       navigate("/booking-success", { state: { message: confirmationCode } });

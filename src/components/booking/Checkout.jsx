@@ -4,12 +4,6 @@ import RoomCarousel from "./../common/RoomCarousel";
 import { useParams } from "react-router-dom";
 import { getRoomById } from "../utils/ApiFunctions";
 import {
-  RingLoader,
-  BeatLoader,
-  SyncLoader,
-  PulseLoader,
-} from "react-spinners";
-import {
   FaConciergeBell,
   FaCouch,
   FaHandHoldingHeart,
