@@ -22,7 +22,6 @@ const BookingForm = () => {
     checkOutDate: "",
     numOfAdults: "",
     numOfChildren: "",
-    userId: "",
   });
 
   const userId = localStorage.getItem("userId");
@@ -106,8 +105,7 @@ const BookingForm = () => {
   // handle Form Submit
   const handleFormSubmit = async () => {
     try {
-      console.log(booking);
-      const confirmationCode = await bookRoom(roomId, booking);
+      const confirmationCode = await bookRoom(roomId, userId, booking);
       setIsSubmitted(true);
       navigate("/booking-success", { state: { message: confirmationCode } });
     } catch (error) {

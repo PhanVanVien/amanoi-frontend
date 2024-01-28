@@ -276,7 +276,7 @@ h2 {
 /* .carousel-inner {
   padding: 1em;
 } */
-.carousel-control-prev,
+/* .carousel-control-prev,
 .carousel-control-next {
   background-color: #e1e1e1;
   width: 5vh;
@@ -284,7 +284,7 @@ h2 {
   border-radius: 50%;
   top: 50%;
   transform: translateY(-50%);
-}
+} */
 @media (min-width: 768px) {
   .card img {
     height: 11em;

@@ -82,10 +82,10 @@ export async function updateRoom(roomId, roomData) {
   return response;
 }
 
-export async function bookRoom(roomId, booking) {
+export async function bookRoom(roomId, userId, booking) {
   try {
     const response = await api.post(
-      `/bookings/room/${roomId}/booking`,
+      `/bookings/room/${roomId}/${userId}/booking`,
       booking
     );
     return response.data;
