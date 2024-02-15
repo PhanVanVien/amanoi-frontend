@@ -8,7 +8,6 @@ const token = localStorage.getItem("token");
 
 // Note: Becareful when use property content-type because it depend on require in backend
 export const getHeader = () => {
-  console.log(token);
   return {
     Authorization: `Bearer ${token}`,
   };
@@ -45,6 +44,30 @@ export async function getAllRooms() {
     const response = await api.get("/rooms/all-rooms", {
       headers: getHeader(),
     });
+    return response.data;
+  } catch (error) {
+    throw new Error("Error fetching rooms");
+  }
+}
+
+export async function getAllRoomsByPageable(page, size) {
+  try {
+    const response = await api.get(
+      `/rooms/paged-rooms?page=${page}&size=${size}`,
+      { headers: getHeader() }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error("Error fetching rooms");
+  }
+}
+
+export async function getAllRoomsByPageableAndName(page, size, roomType) {
+  try {
+    const response = await api.get(
+      `/rooms/paged-rooms?page=${page}&size=${size}&roomType=${roomType}`,
+      { headers: getHeader() }
+    );
     return response.data;
   } catch (error) {
     throw new Error("Error fetching rooms");
@@ -193,7 +216,7 @@ export async function getBookingsByUserId(userId) {
     const response = await api.get(`/bookings/user/${userId}/bookings`, {
       headers: getHeader(),
     });
-    console.log(response.data)
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error("Error fetching bookings: " + error.message);

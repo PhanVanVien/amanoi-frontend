@@ -6,18 +6,18 @@ import "./pagination.scss";
 const RoomPaginator = (props) => {
   const {
     onPageChange,
-    totalCount,
+    total,
     siblingCount = 1,
     currentPage,
-    pageSize,
+    limit,
     className,
   } = props;
 
   const paginationRange = usePagination({
     currentPage,
-    totalCount,
+    total,
     siblingCount,
-    pageSize,
+    limit,
   });
 
   if (currentPage === 0 || paginationRange.length < 2) {

@@ -1,32 +1,64 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import {
+  getAllRoomsByPageableAndName,
+  getRoomTypes,
+} from "../utils/ApiFunctions";
 
-const RoomFilter = ({ data, setFilteredData }) => {
-  // state filter represent for selected type
-  const [filter, setFilter] = useState("");
+const RoomFilter = ({
+  setFilteredData,
+  setTotal,
+  currentPage,
+  limit,
+  setCurrentPage,
+}) => {
+  const [roomTypes, setRoomTypes] = useState([]);
+  const [roomType, setRoomType] = useState("");
 
   const clearFilter = () => {
-    setFilter("");
-    setFilteredData(data);
+    setRoomType("");
+    setCurrentPage(1);
+  };
+
+  useEffect(() => {
+    fetchRooms(roomType);
+  }, [currentPage, roomType]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [roomType]);
+  const fetchRooms = async (roomType) => {
+    try {
+      const result = await getAllRoomsByPageableAndName(
+        currentPage - 1,
+        limit,
+        roomType
+      );
+      setFilteredData(result.rooms);
+      setTotal(result.total);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchRoomTypes();
+  }, []);
+
+  const fetchRoomTypes = () => {
+    getRoomTypes().then(setRoomTypes);
   };
 
   const handleSelectChange = (e) => {
     const selectedType = e.target.value;
-    setFilter(selectedType);
-
-    const filteredRooms = data.filter((room) =>
-      room.roomType.toLowerCase().includes(selectedType.toLowerCase())
-    );
-    setFilteredData(filteredRooms);
+    setRoomType(selectedType);
   };
-
-  const roomTypes = [...new Set(data.map((room) => room.roomType))];
 
   return (
     <div className="mb-3 input-group">
       <span className="input-group-text">Filter rooms by type</span>
       <select
         className="form-select"
-        value={filter}
+        value={roomType}
         onChange={handleSelectChange}
       >
         <option defaultValue value="">

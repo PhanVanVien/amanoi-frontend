@@ -12,10 +12,23 @@ const BookingsTable = ({ bookingInfo, handleBookingCancelation }) => {
     let filtered = bookingInfo;
     if (startDate && endDate) {
       filtered = bookingInfo.filter((booking) => {
-        const bookingStarDate = parseISO(booking.checkInDate);
-        const bookingEndDate = parseISO(booking.checkOutDate);
+        const bookingStartDateArray = booking.checkInDate;
+        const bookingEndDateArray = booking.checkOutDate;
+        console.log(bookingStartDateArray);
+        console.log(bookingEndDateArray);
+
+        const bookingStartDateString = new Date(
+          bookingStartDateArray
+        ).toISOString();
+        const bookingEndDateString = new Date(
+          bookingEndDateArray
+        ).toISOString();
+
+        const bookingStartDate = parseISO(bookingStartDateString);
+        const bookingEndDate = parseISO(bookingEndDateString);
+
         return (
-          bookingStarDate >= startDate &&
+          bookingStartDate >= startDate &&
           bookingEndDate <= endDate &&
           bookingEndDate > startDate
         );
@@ -40,10 +53,6 @@ const BookingsTable = ({ bookingInfo, handleBookingCancelation }) => {
     setTimeout(() => {
       setOpen(false);
     }, 2000);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
   };
 
   return (
